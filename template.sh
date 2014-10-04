@@ -1,18 +1,25 @@
 #!/bin/bash
-#--------------------------------------------------------------------
+########################################################################
+#
+# Script:    describe what the function of this script is
+# Author:    Mattias Geniar
+# Contact:   <m@ttias.be>
+#
+# Changelog (sorted newest -> oldest):
+#   - 2014-10-04: updated draft
+#   - 2014-10-03: first draft
 #
 #
-#--------------------------------------------------------------------
+########################################################################
 
 # Create a few constants that can be used further in the script
 VERSION=0.1.0
-USAGE_INFO="Usage: command -h args"
 
 # Determine some basic information, used later in the script
 this_path=$(readlink -f $0)        ## Path of this file including filename
 dir_name=`dirname ${this_path}`    ## Dir where this file is
 myname=`basename ${this_path}`     ## file name of this script.
-logger="${myname}.log"
+logfile="${myname}.log"
 
 # Create several routines for handling our "common" use cases: help, log, output, ...
 # Routine: display help usage to the user
@@ -36,9 +43,9 @@ function log {
   current_timestamp=`date`
   if [[ $quiet == "true" ]]
   then
-    echo $current_timestamp ": " $1 1>> $logger
+    echo $current_timestamp ": " $1 1>> $logfile
   else
-    echo $current_timestamp ": " $1 | tee -a $logger
+    echo $current_timestamp ": " $1 | tee -a $logfile
   fi
 }
 
